@@ -2,7 +2,7 @@
 niconico coment capture server
 # Install
 
-Install Nodejs, Chromium,pm2.
+Install Nodejs, Chromium, pm2.
 
 ```bash:install&#x20;nodejs&#x20;npm&#x20;
 $ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -10,6 +10,8 @@ $ apt update
 $ sudo apt install -y nodejs Chromium
 $ sudo npm install pm2 -g
 ```
+
+Download & Install node modules
 
 ```bash:install&#x20;nico_come_capt_server
 $ mkdir nico_come
@@ -38,4 +40,24 @@ recordingFinishCommand: '/bin/node ./node/nico_come_ctrl.js stop'
 ~~~~~~~~~~ - vim - ~~~~~~~~~~
 
 $ pm2 restart epgstation
+```
+
+# Other Use
+
+Start
+```bash:Start&#x20;nico_come_capture
+$ curl -X POST -H "Content-Type: application/json" -d '{\
+    "c_name": "Channel Name",\
+    "p_name": "Program Name",\
+    "s_time": "Start Time",\
+    "e_time": "End Time",\
+    "p_url": "niconico URL"\
+  }' localhost:12525/start
+```
+
+Stop
+```bash:Stop&#x20;nico_come_capture
+$ curl -X POST -H "Content-Type: application/json" -d '{\
+    "p_name": "Program Name"\
+  }' localhost:12525/stop
 ```
