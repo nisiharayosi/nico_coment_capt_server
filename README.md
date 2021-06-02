@@ -25,7 +25,7 @@ $ pm2 start nico_come_capt_server.js --name nico_come_capt
 
 # Use
 
-```bash:Config&#x20;set&#x20;nico_come_capt_ctrl
+```diff_bash:Config&#x20;set&#x20;nico_come_capt_ctrl
 $ cd EPGStation
 $ mkdir node
 $ cd node
@@ -34,8 +34,8 @@ $ vi ../config/config.yml
 ~~~~~~~~~~ - vim - ~~~~~~~~~~
 @config.yml(以下2行を追加)
 
-recordingPreStartCommand: '/bin/node ./node/nico_come_ctrl.js start'
-recordingFinishCommand: '/bin/node ./node/nico_come_ctrl.js stop'
++ recordingPreStartCommand: '/bin/node ./node/nico_come_ctrl.js start'
++ recordingFinishCommand: '/bin/node ./node/nico_come_ctrl.js stop'
 
 ~~~~~~~~~~ - vim - ~~~~~~~~~~
 
