@@ -20,33 +20,36 @@ const message_system_1 = '{"type":"startWatching","data":{"stream":{"quality":"a
 const message_system_2 = '{"type":"getAkashic","data":{"chasePlay":false}}';
 
 setInterval(()=>{
-    tasklist = '****Task List****\n';
-    if(worker.length != 0)
-    for(let k in worker){
-        tasklist += '@['+worker[k].channel_name+']'+k+'\n';
+    getdate = new Date();
+    tasklist = '****Task List('+getdate.toFormat("HH24:MI:SS")+')****\n';
+    if(Object.keys(worker).length != 0){
+        for(let k in worker){
+            tasklist += '@['+worker[k].channel_name+']'+k+'\n';
+        }
     }
     else{
         tasklist += '@Non Task\n';
     }
-    tasklist += '*******End*******';
+    tasklist += '************End************';
     console.log(tasklist);
-}, 600000);
+}, 1800000);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) =>{
-    tasklist = '****Task List****\n';
-    if(worker.length != 0)
-    for(let k in worker){
-        tasklist += '@['+worker[k].channel_name+']'+k+'\n';
+    getdate = new Date();
+    tasklist = '****Task List('+getdate.toFormat("HH24:MI:SS")+')****\n';
+    if(Object.keys(worker).length != 0){
+        for(let k in worker){
+            tasklist += '@['+worker[k].channel_name+']'+k+'\n';
+        }
     }
     else{
         tasklist += '@Non Task\n';
     }
-    tasklist += '*******End*******';
+    tasklist += '************End************';
     res.send('Welcome! "Nico Coment Chaptuer"...\n\n@http://address/start -> Chaptuer Start!\n---POST DATA(json){\n - c_name : "Channel Name"\n - p_name : "Program Name"\n - s_time : "Start Time"\n - e_time : "End Time"\n - p_url : "niconico URL"(OPTION)\n}\n\n@http://address/stop -> Chaptuer Stop!\n---POST DATA(json){\n - p_name : "Program Name"\n}\n\n'+tasklist);
-    console.log('');
 });
 app.post("/start", (req, res) =>{
     let channel_name;
